@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ee-scripts"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pyspice>=1.5",
+    "pyserial>=3.5",
+    "scipy>=1.10",
+    "valispace>=0.1.24.1",
+]
+
+[project.scripts]
+e4350 = "pyscripts.e4350:main"
+talke4530 = "pyscripts.talke4530:main"
+prologix-scan = "pyscripts.prologix_scan:main"
+
+[tool.setuptools]
+py-modules = ["main"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pyscripts*"]

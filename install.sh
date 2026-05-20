@@ -17,6 +17,9 @@ patch src/frontend/cpitf.c </tmp/patchfile
 make -j4
 make install
 
-export LD_LIBRARY_PATH /usr/local/lib
+export LD_LIBRARY_PATH=/usr/local/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
 
-pip3 install PySpice valispace
+python3 -m pip install uv
+uv_bin="$(command -v uv)"
+ln -sf "$uv_bin" /usr/local/bin/uv
+uv sync

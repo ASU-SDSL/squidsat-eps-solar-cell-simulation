@@ -2,15 +2,16 @@
 import argparse
 import serial
 import time
-import e4350
 
-if __name__ == '__main__':
+from pyscripts import e4350
+
+def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', '--port', required=True)
     parser.add_argument('-a', '--address', required=True)
     parser.add_argument('-m', '--message')
     parser.add_argument('-s', '--scroll', action='store_true')
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     ser = serial.Serial(args.port, 9600)
     sas = e4350.E4350(ser, args.address, debug=True, cautious=False)
@@ -23,3 +24,7 @@ if __name__ == '__main__':
                 i = (i + 1) % len(args.message)
     else:
         sas.set_display()
+
+
+if __name__ == '__main__':
+    main()
