@@ -76,3 +76,15 @@ sudo usermod -aG dialout $USER   # then log out and back in
 `prologix-scan` auto-detects the Prologix serial port, then scans GPIB addresses until it finds a responding instrument.
 
 The `ngspice` build step in `install.sh` is still relevant if you need the PySpice-based solar cell models, because that dependency is not handled by `uv` itself.
+
+
+## Command 
+
+```bash
+uv run e4350 --sim=0.22,5.0,0.20,6.0 --verbose
+```
+Where:
+- 0.22 → Isc = 220 mA (short-circuit, ~10% above Imp)
+- 5.0 → Vmp = 5.0 V (max-power point voltage)
+- 0.20 → Imp = 200 mA (max-power point current)
+- 6.0 → Voc = 6.0 V (open-circuit, ~20% above Vmp)
